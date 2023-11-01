@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <style type="text/css">
+          
+
+      * {
+        border: 0;
+        box-sizing: content-box;
+        color: inherit;
+      
+        font-size: inherit;
+        font-style: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: top;
+      }
+
+      /* content editable */
+
+      *[contenteditable] {
+        border-radius: 0.25em;
+        min-width: 1em;
+        outline: 0;
+      }
+
+      *[contenteditable] {
+        cursor: pointer;
+      }
+
+      *[contenteditable]:hover,
+      *[contenteditable]:focus,
+      td:hover *[contenteditable],
+      td:focus *[contenteditable],
+      img.hover {
+        background: #def;
+        box-shadow: 0 0 1em 0.5em #def;
+      }
+
+      span{
+        display: inline-block;
+        line-height: 24px;
+        font-size: 16px;
+
+      }
+      td{
+      
+        line-height: 24px;
+        font-size: 16px;
+
+      }
+
+      /* heading */
+
+
+
+      /* table */
+
+      table {
+        font-size: 75%;
+        table-layout: fixed;
+        width: 100%;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0px;
+      }
+      th,
+      td {
+      
+        position: relative;
+        text-align: left;
+      }
+      th,
+      td {
+        border-radius: 0em;
+        border-style: solid;
+        border: .5px solid black;
+        padding: 10px;
+      }
+
+      th {
+      
+        text-align: left;
+        border-bottom: none;
+      }
+      /* td {
+        
+      } */
+
+      /* page */
+
+      html {
+        font: 16px/1 "Open Sans", sans-serif;
+        overflow: auto;
+        padding: 0.5in;
+      }
+      html {
+        background: #999;
+        cursor: default;
+      }
+
+      body {
+        box-sizing: border-box;
+      aspect-ratio: 1.4/2;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0;
+        width:100%;
+        font-family: 'Montserrat', sans-serif;
+        overflow: auto;
+        background: #fff;
+
+        box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+
+      /* header */
+
+
+
+      header{
+          position: relative;
+          padding-bottom: 20px;
+      }
+
+
+
+      header td{
+        text-align: center;
+      }
+
+
+      /* article */
+
+      article{
+        padding: 20px;
+
+      }
+
+
+      @media print {
+        * {
+          -webkit-print-color-adjust: exact;
+        }
+        html {
+          background: none;
+          padding: 0;
+        }
+        body {
+          box-shadow: none;
+          margin: 0;
+        }
+        span:empty {
+          display: none;
+        }
+
+      }
+
+      @page {
+        margin: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+    
+    <article id="app">
+      <header >
+        <table>
+          <tr>
+            <td colspan="2" style="border:none;"><span style="font-weight: 700;font-size: 24px;">BIOWIN AGRO RESEARCH <br> <span style="font-weight: 600; font-size: 15px;">VEMOM POST, WAYAND DIST- 670645 <br>KERALA,INDIA</span> </span></td>
+          </tr>
+        </table>
+      </header>
+      <table class="">
+        <thead>
+          <tr>
+            <th colspan="8" style="text-align: center; border: none;font-weight: 700;font-size: 24px;">CONSENT FORM</th>
+          </tr>
+          <tr >
+            <th colspan="1">
+              <span  style="font-weight: 600;">1</span> 
+            </th>
+            <th colspan="3">
+              <span  style="font-weight: 600;">Name of Licensee</span> 
+            </th> 
+            <th colspan="4">
+              <span  style="font-weight: 600;">Biowin Agro Research</span> 
+            </th>   
+                            
+          </tr>
+        </thead>
+        <tbody >
+          <!-- <tr>
+            <td>
+              {{form_data.ics_name}}
+            </td>
+            <td>
+              {{form_data.buyer_name}}
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+      <!-- <table class="" >
+        <thead>
+          <tr >
+            <th style="border-top:none;">
+              <span  style="font-weight: 700;">Dispacth From</span> 
+            </th>
+            <th style="border-top:none;">
+              <span  style="font-weight: 700;">Dispatch To (Place and Address)</span> 
+            </th>                                   
+          </tr>
+        </thead>
+        <tbody >
+          <tr>
+            <td>
+              <span>{{form_data.dispatch_from}}</span> 
+            </td>
+            <td>
+              <span>{{form_data.dispatch_to}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-bottom:none;">
+              <span>Lot No : {{form_data.tc_number}}</span> 
+            </td>
+            <td style="border-bottom:none;">
+              <span>Transport Date :09-02-2023    </span>
+              <span>Vehicle No :    KL 57 3196</span>
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
+      <table class="" >
+        <thead>
+          <tr >
+            <th  colspan="2">
+              <span  style="font-weight: 600;">2</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Address of the Licensee </span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;">Venom post, Wayanad Dist.- 670645, Kerala, INDIA</span> 
+            </th>   
+                            
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="farmer in form_data.farmers">
+            <td>{{farmer.id}}</td>
+            <td>{{farmer.farmer_code}}</td>
+            <td>{{farmer.name}}</td>
+            <td>{{farmer.status}}. {{farmer.category}} <br>{{farmer.product}}</td>
+            <td>{{farmer.procure_qty}}</td>
+            <td>{{form_data.bag_weight}} Kg* {{form_data.number_bags}} No </td>
+            <td>{{farmer.price}}</td>
+            <td>{{farmer.total}}</td>
+            <td>C1073 to C1120 </td>
+          </tr>
+          
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">3</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Name of the Farmer </span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">4</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Address of the Farmer </span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">5</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">6	Mobile phone no of the farmer	</span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">6</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Revenue village </span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">7</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Local Village </span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">8</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Farmer Code</span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">9  </span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Land survey No</span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <tr style="border-bottom:1px solid black ;">
+            <th  colspan="2">
+              <span  style="font-weight: 600;">10</span> 
+            </th>
+            <th colspan="5">
+              <span  style="font-weight: 600;">Name of the VFC</span> 
+            </th> 
+            <th colspan="7">
+              <span  style="font-weight: 600;"></span> 
+            </th>   
+          </tr>
+          <!-- <tr>
+            <th  colspan="2">
+              <span  style="font-weight: 600;">1</span> 
+            </th>
+            <th colspan="8">
+              <span  style="font-weight: 600;">INVOICE NO : B/2022-23</span> 
+            </th> 
+            <th colspan="4">
+              <span  style="font-weight: 600;">Date :</span> 
+            </th>   
+          </tr> -->
+        </tbody>
+      </table><br><br>
+      <span>I, the under signed hereby solemnly affirm that : </span><br><br>
+      <span>1.  	I am willing to follow the standards of organic certification programme introduced and promoted by Biowin Agro Research</span><br><br>
+      <span>2.	  I am fully aware of the organic standards of NPOP, EU, USDA-NOP and IFOAM and I am ready to follow them </span><br><br>
+      <span>3.  	I shall not apply any kind chemicals including chemical fertiliser, fungicide, weedicide, pesticide in my land dedicated for organic certification / farming </span><br><br>
+      <span>4.  	I shall take measures to improve the fertility of farm land  such as mulching, composting, etc.</span><br><br>
+      <span>5.  	I shall try my best to manufacture bio fertilisers and bio pest controls necessary for my faming requirement </span><br><br>
+      <span>6.  	I shall source seedlings and seeds only from farms those follow organic standards or farms under organic certification programme </span><br><br>
+      <span>7.  	I shall take measures to prevent the polluted objects to enter into my farm land from outside </span><br><br>
+      <span>8.  	I shall not practice parallel cultivation in my land  </span><br><br>
+      <span>9.  	I shall take steps to reduce the usage of inputs which are not certified under organic standards. </span><br><br>
+      <span>10.  	I shall extend my cooperation to the external agencies / auditors to enter into my farm land and <br>make necessary inspection /evaluation/ observation as per their requirement   </span><br><br>
+      <span>11.  	I shall participate in all the training programmes / workshops introduced by Biowin Agro Research</span><br><br>
+      <span>12.  	I shall bear the cost of organic certification fully or partially as per the directions of Biowin Agro Research </span><br><br>
+      <span>13.   I shall be an active member in the village farmers club (VFC) formed to organise the certified <br>organic farmers and I shall participate actively in the meetings conducted by VFC  </span><br><br>
+      <br>
+      <table>
+        <tbody>
+          <!-- <tr>
+            <td colspan="">NAPLES</td>
+            <td colspan="2">NAPLES</td>
+          </tr> -->
+              <table>
+              <tbody>
+                <!-- <tr>
+                  <td colspan="2">
+                    <span></span>
+                  </td>
+                </tr> -->
+                
+        </tbody>
+      </table>
+    </article>
+    
+    <script>
+      var myObject = new Vue({
+        el: '#app',
+        data() {
+          return {
+            // api_url:'https://api.biowinnew.capcee.com',
+            // api_url:'https://api.biowinerp.com',
+            api_url:'http://127.0.0.1:8000',
+            is_print_btn:true,
+            total_pages:0,
+            form_data:{
+              id : null,
+              tc: null,
+              farmers:[],
+            },
+          };
+        },
+        mounted(){
+          var url_string = window.location.href
+          var url = new URL(url_string);
+          var tc_id = url.searchParams.get("tc")
+          var form_id = url.searchParams.get("form")
+          
+          var is_loggin = false
+          if(localStorage.getItem("userInfo"))
+          {
+            if(localStorage.getItem("userInfo").length>0){
+              is_loggin = true
+              this.form_data.id = form_id
+              this.form_data.tc = tc_id
+              this.getForm()
+            }
+          }
+          if(!is_loggin){
+              this.$router.push('/login')
+          }
+        },
+        methods: {
+          printNow() {
+            this.is_print_btn = false
+            setTimeout(function() {
+              window.print()
+            }, 100)
+            window.onafterprint = back;
+            var self = this
+            function back() {
+              self.is_print_btn = true
+            }
+          },
+          getForm() {
+            var headers = new Headers();
+            fetch(this.api_url+'/purchase/documentation_tc_value/'+this.form_data.tc+'/'+this.form_data.id+'/', {
+                method : 'get',
+                headers: headers,
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((jsonData) => {
+              this.form_data = jsonData
+              var self = this
+              setTimeout(function(){
+                self.printNow()
+              },500)
+            })
+          },
+          totalFarm(field){
+            var total = 0
+            this.form_data.farmers.forEach(farmer => {
+              total += parseFloat(farmer[field])
+            });
+            return total
+          },
+          romanize(num) {
+            var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},roman = '',i;
+            for ( i in lookup ) {
+              while ( num >= lookup[i] ) {
+                roman += i;
+                num -= lookup[i];
+              }
+            }
+            return roman;
+          },
+          numberToWords(number) {
+            // Define arrays for words
+            const units = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            const thousands = ['', 'thousand', 'million', 'billion', 'trillion'];
+
+            // Function to convert a chunk of three digits into words
+            function convertChunk(num) {
+                if (num === 0) return '';
+                if (num < 10) return units[num];
+                if (num < 20) return teens[num - 10];
+                const ten = Math.floor(num / 10);
+                const one = num % 10;
+                return tens[ten] + (one !== 0 ? ' ' + units[one] : '');
+            }
+
+            // Function to convert the main number into words
+            function convertNumber(num) {
+                if (num === 0) return 'zero';
+                const chunks = [];
+                let chunkIndex = 0;
+                while (num > 0) {
+                    const chunk = num % 1000;
+                    if (chunk !== 0) {
+                        chunks.push(convertChunk(chunk) + ' ' + thousands[chunkIndex]);
+                    }
+                    num = Math.floor(num / 1000);
+                    chunkIndex++;
+                }
+                return chunks.reverse().join(' ').trim();
+            }
+
+            // Main function call
+            return convertNumber(number);
+          },
+          dateFormate(date,is_time=false){
+            if(!date){
+              return ''
+            }
+            var mydate = new Date(date);
+            var month = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+            "July", "Aug", "Sept", "Oct", "Nov", "Dec"][mydate.getMonth()];
+            var time = '';
+            if(is_time){
+              var hour = mydate.getHours();
+              var min = mydate.getMinutes();
+              var sec = mydate.getSeconds();
+              time = mydate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+              if(hour==0&&min==0&&sec==0){
+                time='';
+              }
+            }
+            var str = mydate.getDate()+' '+month + ' ' +mydate.getFullYear()+' '+time;
+      
+            return str
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
